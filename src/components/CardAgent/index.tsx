@@ -1,23 +1,9 @@
 import Image from 'next/image'
+import type { IAgent } from 'types/agent'
+
 import styles from './style.module.scss'
 
-// criar uma interface pra colocar na const Agent e poder usar as propriedades de cada agent que está no json
-interface AgentProps {
-  agent: {
-    role: {
-      displayName: string
-    }
-    displayName: string
-    abilities: {
-      displayIcon: string
-      displayName: string
-    }[]
-    fullPortrait: string
-    // esses 2 colchetes transformam isso em um array
-  }
-}
-
-export const Agent = ({ agent }: AgentProps) => (
+export const CardAgent = (agent: IAgent) => (
   <a href="#" className={styles.agent}>
     <div className={styles.text}>
       <p>{agent.role.displayName}</p>
