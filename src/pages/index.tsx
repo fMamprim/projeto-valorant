@@ -1,10 +1,11 @@
-import { Header } from 'components/header/indes'
+import { Header } from 'components/Header'
+import { Main } from 'components/Main'
 import styles from 'styles/home.module.scss'
 
 const HomePage = () => (
   <div className={styles.container}>
     <Header />
-    <main className="">main</main>
+    <Main />
   </div>
 )
 
