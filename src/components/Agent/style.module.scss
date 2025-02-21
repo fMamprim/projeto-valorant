@@ -3,38 +3,102 @@
     flex-direction: column;
     justify-content: space-between;
 
-    background: pink;
+    // background: pink;
     width: 300px;
     height: 600px;
 
-    > div {
-        font-family: 'Druk';
+    position: relative;
 
-        p {
-            color: var(--red-buttons);
-            font-weight: normal;
-            letter-spacing: 1px;
+    filter: grayscale(1);
+    transition: all 0.3s;
+    
+    // & significa ela mesma (.agent)
+    &:hover {
+        filter: grayscale(0);
+        
+        .text {
+            opacity: 1;
         }
-
-        strong {
-            font-size: 42px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: bold;
-
-            color: transparent;
-            -webkit-text-stroke: 2px rgba(255,255,255,0.8);
+        
+        .background {
+            background: var(--dark-blue-bg1);
+            
+            span {
+                background-size: 340%;
+            }
         }
     }
 
-    ul {
-        list-style: none;
-        /* tirar os bullets da lista */
+    .text, .abilities {
+        z-index: 2;
+    }
+}
+
+.text {
+    font-family: 'Druk';
+
+    margin-top: 40px;
+    margin-left: -10px;
+    align-self: flex-start; //pra o nome ficar na esquerda
+    writing-mode: vertical-rl;
+
+    opacity: 0.5;
+    transition: all 0.3s;
+    
+    p {
+        color: var(--red-buttons);
+        font-weight: normal;
+        letter-spacing: 1px;
+    }
+    
+    strong {
+        font-size: 42px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: bold;
         
-        display: flex;
-        align-items: center;
-        column-gap: 20px;
-        align-self: flex-end;
-        /* alinha EU MESMO (elemento ul) para a direita */
+        color: transparent;
+        -webkit-text-stroke: 2px rgba(255,255,255,0.8);
+    }
+}
+
+.abilities {
+    list-style: none;
+    /* tirar os bullets da lista */
+    
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    align-self: flex-end; /* alinha EU MESMO (elemento ul) para a direita */
+    
+    padding: 16px;
+    border-radius: 2px;
+    border: 1px solid var(--white);
+    background: var(--black);
+}
+
+.background {
+    position: absolute; // absoluto á quem?  ao .agent com a "position: relative" nele
+    inset: 0; // faz ocupar toda a área (faz left right top bottom virar 0)
+    background: var(--dark-blue-bg1-opacity);
+    border-radius: 10px;
+    overflow: hidden;
+    
+    width: 90%;
+    height: 90%;
+    margin: auto; // centraliza por causa do flex do elemento pai
+    
+    transition: all 0.3s;
+    
+    span {
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        transition: all 0.3s;
+
+        background-repeat: no-repeat;
+        background-size: 290%; // é pq a imagem é um png muito grande com muito espaço em volta do personagem
+        background-position: 45% 35%; // ajuste pelo mesmo motivo do anterior (usa X e Y nessa ordem)
     }
 }

@@ -12,18 +12,19 @@ interface AgentProps {
       displayIcon: string
       displayName: string
     }[]
+    fullPortrait: string
     // esses 2 colchetes transformam isso em um array
   }
 }
 
 export const Agent = ({ agent }: AgentProps) => (
   <a href="#" className={styles.agent}>
-    <div>
+    <div className={styles.text}>
       <p>{agent.role.displayName}</p>
       <strong>{agent.displayName}</strong>
     </div>
 
-    <ul>
+    <ul className={styles.abilities}>
       {agent.abilities.map(ability => (
         // mapeia as habilidades, pois não é um array fixo, tem agente que tem 4 habilidades, tem uns que tem 3
         // tem que colocar uma key única para renderizar cada elemento unicamente
@@ -37,5 +38,10 @@ export const Agent = ({ agent }: AgentProps) => (
         </li>
       ))}
     </ul>
+
+    <div className={styles.background}>
+      <span style={{ backgroundImage: `url("${agent.fullPortrait}")` }} />
+      {/* acento faz virar um template string */}
+    </div>
   </a>
 )
