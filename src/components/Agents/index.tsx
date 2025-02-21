@@ -1,8 +1,14 @@
-import styles from './styles.module.scss'
-import { CardAgent } from 'components/CardAgent'
-
+import { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
+// importações globais
+
+import { IAgent } from 'types/agent'
+import { CardAgent } from 'components/CardAgent'
+// importações locais
+
+import styles from './styles.module.scss'
+// importações de estilo
 
 const AGENT = {
   uuid: '8e253930-4c05-31dd-1b6c-968525494517',
@@ -53,32 +59,32 @@ const AGENT = {
   ]
 }
 
-export const Agents = () => (
-  <Swiper className={styles.agents} spaceBetween={16} slidesPerView={4}>
-    <SwiperSlide>
-      <CardAgent {...AGENT} />
-      {/* 3 pontinhos coloca todas as propriedades do objeto no componente (substitui ter que fazer isso: <CardAgent abilities={AGENT.abilities} displayName={AGENT.displayName} role={AGENT.role} fullPortrair={AGENT.fullPortrait} */}
-    </SwiperSlide>
-    <SwiperSlide>
-      <CardAgent {...AGENT} />
-    </SwiperSlide>
-    <SwiperSlide>
-      <CardAgent {...AGENT} />
-    </SwiperSlide>
-    <SwiperSlide>
-      <CardAgent {...AGENT} />
-    </SwiperSlide>
-    <SwiperSlide>
-      <CardAgent {...AGENT} />
-    </SwiperSlide>
-    <SwiperSlide>
-      <CardAgent {...AGENT} />
-    </SwiperSlide>
-    <SwiperSlide>
-      <CardAgent {...AGENT} />
-    </SwiperSlide>
-    <SwiperSlide>
-      <CardAgent {...AGENT} />
-    </SwiperSlide>
-  </Swiper>
-)
+export const Agents = () => {
+  const [agents, setAgents] = useState<IAgent[]>([])
+
+  const loadAgents = async () => {
+    const route = 'https://valorant-api.com/v1/agents?language=pt-BR'
+    const response = await fetch(route).then(data => data.json())
+    // converte a resposta em json
+
+    const data = response.data as IAgent
+
+    setAgents(data.filter(agent => agent.fullPortrait))
+  }
+
+  useEffect(() => {
+    loadAgents()
+  }, [])
+  // manda executar o código loadAgents. o [] significa "quando a tela for renderizada"
+
+  return (
+    <Swiper className={styles.agents} spaceBetween={16} slidesPerView={4}>
+      {agents.map(agent => (
+        <SwiperSlide key={agent.displayName}>
+          <CardAgent {...agent} />
+          {/* 3 pontinhos coloca todas as propriedades do objeto no componente (substitui ter que fazer isso: <CardAgent abilities={AGENT.abilities} displayName={AGENT.displayName} role={AGENT.role} fullPortrait={AGENT.fullPortrait} */}
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  )
+}
