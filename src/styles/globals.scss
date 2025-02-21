@@ -6,16 +6,27 @@
 
 :root {
   --white: #FFFFFF;
-  --black: #1F2326;
-  --black-opacity: rgba(31, 35, 38, 0.75);
-  --red: #FF4656;
-  --silver: #C4C4C4;
+  --dark-gray-default: #1F2326;
+  --black-opacity-default: rgba(31, 35, 38, 0.75);
+  --red-default: #FF4656;
+  --silver-default: #C4C4C4;
+
+  --red-buttons: #ff4854;
+  --dark-blue-bg1: #0f1923;
+  --black: #111111;
+  --cream-text: #ece8e1;
+  --dark-blue-nav: #27272f;
+  --dark-gray-bg2: #32333c;
+  --red-detail: #ff4855;
+  --gray-text: #939397;
+  --medium-gray: #292929;
+
 }
 
 body {
-  background: var(--red);
+  background: var(--dark-blue-bg1);
   
-  color: var(--black);
+  color: var(--cream-text);
   font: 400 1rem "Montserrat", sans-serif;
 }
 
@@ -26,6 +37,11 @@ a {
 
 button {
   border: 0;
+  background-color: var(--red-buttons);
+  color: var(--white);
+  font: 400 1rem "Montserrat", sans-serif;
+  border-radius: 7px;
+  padding: 10px 10px 10px 10px;
 
   &:hover {
     cursor: pointer;

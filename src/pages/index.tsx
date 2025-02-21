@@ -1,7 +1,12 @@
+import styles from 'styles/home.module.scss'
+
 const HomePage = () => (
-  <main className="">
-    <h1>valorant</h1>
-  </main>
+  <div className={styles.container}>
+    <header>
+      <div className={styles.header__content}>header</div>
+    </header>
+    <main className="">main</main>
+  </div>
 )
 
 export default HomePage
